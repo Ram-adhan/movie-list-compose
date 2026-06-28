@@ -30,7 +30,7 @@ class MovieRepositoryImpl @Inject constructor(
     private var _cachedNowPlayingMovies: List<MovieResponse> = emptyList()
     private val _cachedMoviesDetail: MutableMap<Long, MovieDetailResponse> = mutableMapOf()
 
-    override suspend fun getPopularMovies(
+    override fun getPopularMovies(
         imageContext: ImageContext,
         imageSize: ImageSize
     ): Flow<Result<List<Movie>>> = flow {
@@ -73,7 +73,7 @@ class MovieRepositoryImpl @Inject constructor(
         emit(remoteResult)
     }
 
-    override suspend fun getTopRatedMovies(imageSize: ImageSize): Flow<Result<List<Movie>>> = flow {
+    override fun getTopRatedMovies(imageSize: ImageSize): Flow<Result<List<Movie>>> = flow {
         if (_cachedTopRatedMovies.isNotEmpty()) {
             emit(
                 Result.success(
@@ -105,7 +105,7 @@ class MovieRepositoryImpl @Inject constructor(
         emit(remoteResult)
     }
 
-    override suspend fun getNowPlayingMovies(imageSize: ImageSize): Flow<Result<List<Movie>>> = flow {
+    override fun getNowPlayingMovies(imageSize: ImageSize): Flow<Result<List<Movie>>> = flow {
         if (_cachedNowPlayingMovies.isNotEmpty()) {
             emit(
                 Result.success(
@@ -137,7 +137,7 @@ class MovieRepositoryImpl @Inject constructor(
         emit(remoteResult)
     }
 
-    override suspend fun getMovieDetail(id: Long): Flow<Result<MovieDetail>> = flow {
+    override fun getMovieDetail(id: Long): Flow<Result<MovieDetail>> = flow {
         _cachedMoviesDetail[id]?.let { movie ->
             emit(
                 Result.success(
@@ -226,7 +226,7 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAllFavorite(): Flow<List<MovieDetail>> = flow {
+    override  fun getAllFavorite(): Flow<List<MovieDetail>> = flow {
         emit(
             runCatching {
                 movieFavoriteDao.getAllFavorite()
