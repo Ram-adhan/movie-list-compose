@@ -54,7 +54,6 @@ class MovieDetailViewModel @Inject constructor(
             movieRepository.getMovieReview(id)
                 .fold(
                     onSuccess = { result ->
-                        Log.d("review", "$result")
                         stateField.update { it.copy(reviews = result) }
                     },
                     onFailure = ::handleError
