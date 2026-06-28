@@ -13,4 +13,6 @@ This app is an implementation of The Movie DB API
 
 ## How to run
 1. Make sure the AGP and JDK is set
-2. build the app
+2. add `secret.properties` alongside `local.properties`
+3. add `TMDB_API_KEY` of your own
+4. build the app
